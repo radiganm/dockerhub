@@ -1,0 +1,12 @@
+## Vimb
+# The vim-like browser
+see https://fanglingsu.github.io/vimb
+
+# vimb
+```bash
+xhost +
+docker run \
+  -v /tmp/.X11-unix:/tmp.X11-unix:ro \
+  -v /my/path:/data \
+  -it radiganm/vimb
+```
