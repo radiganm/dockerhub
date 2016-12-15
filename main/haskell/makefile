@@ -6,7 +6,7 @@
 
 .PHONY: build clean
 
-name = radiganm/vimb
+name = radiganm/haskell
 
 build: 
 	docker build -t $(name) .
