@@ -1,0 +1,98 @@
+#!/bin/bash
+## sdr_ctl
+## Mac Radigan
+
+  d=${0%/*}; f=${0##*/}; n=${f%.*}; e=${f##*.}
+  if [ -f /opt/current.env ]; 
+  then
+    .  /opt/current.env
+  fi
+
+  S__SUCCESS=0
+  S__NO_SUCH_COMMAND=1
+
+  usage()
+  {
+    >&2 cat <<-EOT 
+		$f [args]
+			  gnss-sdr         - run gnss-sdr
+EOT
+    exit ${S__SUCCESS}
+  }
+
+  die()
+  {
+    code=$1; shift
+    msg=$1;  shift
+    (>&2 echo "ERROR ${code}: ${msg}")
+    exit $code
+  }
+
+  warn()
+  {
+    code=$1; shift
+    msg=$1;  shift
+    (>&2 echo "WARN ${code}: ${msg}")
+    exit $code
+  }
+
+  if [[ "$#" == "0" ]]; then
+    usage
+  fi
+
+  util()
+  {
+    cmd=$1; shift
+    case $cmd in
+      find)
+        /usr/bin/find $*
+        ;;
+      shell)
+        /bin/bash $*
+        ;;
+      ls)
+        /bin/ls $*
+        ;;
+      exec)
+        exec $*
+        ;;
+      *)
+        die $S__NO_SUCH_COMMAND "invalid utility: $cmd, must be one of ( find | shell | exec | ls )"
+        ;;
+    esac
+  }
+
+  run()
+  {
+    cmd=$1; shift
+    $cmd $*
+  }
+
+  sigint()
+  {
+    (>&2 echo "TODO:  abort code here")
+    #stop-all
+    #for job in $(jobs -p)
+    #do
+    #  wait $job || warn job "could not wait on job: $job"
+    #done
+  }
+
+# trap sigint SIGINT
+
+  cmd=$1; shift
+  case $cmd in
+    gnss-sdr)
+      /usr/bin/gnss-sdr $*
+      ;;
+    util)
+      util $*
+      ;;
+    *)
+      die $S__NO_SUCH_COMMAND "invalid command: $cmd"
+      ;;
+  esac
+
+  exit $S__SUCCESS
+
+## *EOF*
