@@ -83,7 +83,7 @@ EOT
   cmd=$1; shift
   case $cmd in
     gnss-sdr)
-      /usr/bin/gnss-sdr $*
+      /usr/local/bin/gnss-sdr $*
       ;;
     util)
       util $*
