@@ -3,7 +3,7 @@
 
   FROM ubuntu:latest
 
-  MAINTAINER Mac Radigan <mac@radigan.org>
+  MAINTAINER Mac Radigan
 
   ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
