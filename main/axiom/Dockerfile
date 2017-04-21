@@ -15,6 +15,7 @@
   RUN apt-get update &&  \
       apt-get install -y \
         axiom            \
+        open-axiom       \
         xterm
 
   # clean up APT

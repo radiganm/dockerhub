@@ -20,6 +20,8 @@
 		$f [args]
 			  axiom                   - run Axiom
 			  axiom-ht                - run Axiom with HyperDoc
+			  open-axiom              - run Open Axiom
+			  open-axiom-ht           - run Open Axiom with HyperDoc
 EOT
     exit ${S__SUCCESS}
   }
@@ -94,6 +96,12 @@ EOT
       ;;
     axiom-ht)
       /usr/bin/axiom $*
+      ;;
+    open-axiom)
+      /usr/bin/open-axiom -noht $*
+      ;;
+    open-axiom-ht)
+      /usr/bin/open-axiom $*
       ;;
     util)
       util $*
