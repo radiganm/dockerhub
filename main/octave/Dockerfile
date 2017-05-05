@@ -18,6 +18,7 @@
         curl             \
         wget             \
         build-essential  \
+        gfortran         \
         libtool          \
         autoconf         \
         bison            \
