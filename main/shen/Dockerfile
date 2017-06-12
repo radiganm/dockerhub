@@ -16,6 +16,7 @@
       apt-get install -y     \
       git                    \
       curl                   \
+      wget                   \
       autoconf               \
       automake               \
       build-essential        
