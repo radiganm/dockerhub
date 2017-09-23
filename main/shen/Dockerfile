@@ -22,6 +22,10 @@
       build-essential        
 
   RUN mkdir -p /opt
+
+  RUN (cd /opt; git clone https://github.com/radiganm/tecla.git ./tecla)
+  RUN make -C /opt/tecla -f boostrap.mk install
+
   RUN (cd /opt; git clone https://github.com/radiganm/shen-sbcl.git ./shen-sbcl)
   RUN make -C /opt/shen-sbcl install
 

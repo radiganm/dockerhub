@@ -1,5 +1,5 @@
 #!/bin/bash
-## shen_ctl
+## xdisplay_ctl
 ## Mac Radigan
 ##
 ## Copyright 2016 Mac Radigan
@@ -18,7 +18,7 @@
   {
     >&2 cat <<-EOT 
 		$f [args]
-			  shen                   - run shen
+			  xdisplay               - run xdisplay
 EOT
     exit ${S__SUCCESS}
   }
@@ -73,8 +73,9 @@ EOT
 
   run()
   {
-    cmd=$1; shift
-    $cmd $*
+    #cmd=$1; shift
+    #$cmd $*
+    env DISPLAY=:3 /usr/bin/stumpwm --eval '(load #P"~/quicklisp/setup.lisp")' 1>/dev/null 2>/dev/null
   }
 
   sigint()
@@ -85,20 +86,20 @@ EOT
 
   trap sigint SIGINT
 
-  /usr/local/bin/enhance /usr/local/bin/shen $*
+# run
 
-# cmd=$1; shift
-# case $cmd in
-#   shen)
-#     /usr/local/bin/shen $*
-#     ;;
-#   util)
-#     util $*
-#     ;;
-#   *)
-#     die $S__NO_SUCH_COMMAND "invalid command: $cmd"
-#     ;;
-# esac
+  cmd=$1; shift
+  case $cmd in
+    xdisplay)
+      run
+      ;;
+    util)
+      util $*
+      ;;
+    *)
+      die $S__NO_SUCH_COMMAND "invalid command: $cmd"
+      ;;
+  esac
 
   exit $S__SUCCESS
 
